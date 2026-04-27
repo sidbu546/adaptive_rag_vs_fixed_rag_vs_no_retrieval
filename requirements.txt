@@ -1,0 +1,16 @@
+python-dotenv
+selenium
+requests
+beautifulsoup4
+langchain
+langchain-core
+langchain-openai
+langchain-chroma
+langchain-community
+sentence-transformers
+openai
+gradio
+streamlit
+chainlit
+pypdf
+pypdfium2
