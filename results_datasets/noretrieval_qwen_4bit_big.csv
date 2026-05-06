@@ -1,0 +1,138 @@
+query,query_type,answer,hallucination_rate,groundedness_score,answer_relevance_1to5,context_relevance_1to5,confidence,response_time_s,llm_latency_s,gpu_throughput_toks_per_s,eff_gpu_throughput,gpu_util_percent,gpu_mem_percent,gpu_util_max_percent,gpu_mem_avg_percent,gpu_mem_peak_mb,gpu_mem_torch_peak_mb,gpu_monitor_samples,total_deployment_cost_usd,top_source,context_status,answer_mode_used,used_general_knowledge,retrieved_docs_count,top_retrieval_score,avg_retrieval_score,query_coverage
+"1. Compare Byte-Pair Encoding, unigram tokenization, and character-level modeling for morphologically rich languages such as Turkish and Finnish; under what corpus and compute conditions would each approach outperform the others?",no_retrieval,"Byte-Pair Encoding (BPE), unigram tokenization, and character-level modeling are different approaches to handling text in natural language processing tasks, particularly useful for morphologically rich languages like Turkish and Finnish.
+
+### Byte-Pair Encoding (BPE):
+- **Approach**: BPE learns a set of subword units by iteratively merging the most frequent pairs of bytes or characters into new tokens.
+- **Advantages**: Handles out-of-vocabulary (OOV) words well, captures common morphological patterns, and reduces vocabulary size.
+- **Disadvantages**: Requires training on a large corpus to learn meaningful subwords.
+- **Best Conditions**: Suitable when the corpus is large enough to capture frequent subword patterns. It performs well with morphologically complex languages due to its ability to handle unseen word forms.
+
+### Unigram Tokenization:
+- **Approach**: Unigram tokenization models each token as a sequence of subwords based on their frequency in the training data.
+- **Advantages**: More flexible than BPE, can adapt better to rare words and morphological variations.
+- **",1.0,0.0,3,1,0.0,14.2568,12.1114,18.1646,18.1646,68.1967,43.2993,93.0,43.2993,19990.625,18643.7612,61,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.7
+"2. If two language models have identical perplexity on a benchmark corpus but different downstream QA accuracy, analyze what this implies about the limits of perplexity as an evaluation metric.",no_retrieval,"Perplexity measures how well a language model predicts a text sample and is often used to evaluate the quality of language models. However, it does not directly correlate with performance on specific tasks like question answering (QA). Two models having identical perplexity but differing in QA accuracy suggests that perplexity alone is insufficient for evaluating task-specific performance.
+
+This discrepancy highlights several limitations of perplexity:
+
+1. **Task Relevance**: Perplexity measures general language fluency and coherence but doesn't capture task-specific nuances required for QA, such as factual accuracy or contextual understanding.
+
+2. **Evaluation Scope**: Perplexity evaluates the model’s ability to predict the next word in a sequence, which may not fully reflect its capability to extract and synthesize information needed for QA tasks.
+
+3. **Model Architecture and Training**: Different architectures or training methods might lead to similar perplexity scores but varying capabilities in handling complex reasoning and retrieval tasks essential for QA.
+
+Thus, while perplexity provides insight into a model's general language proficiency, it should be complemented by task-specific metrics to comprehensively assess a model's effectiveness in",1.0,0.0,4,1,0.0,14.1788,11.8218,18.6097,18.6097,68.9167,43.3113,100.0,43.3113,19994.625,18641.3657,60,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.5862
+"3. Compare n-gram smoothing methods, neural language models, and transformer pretraining for low-resource domains with rapidly shifting vocabulary such as medical emergencies.",no_retrieval,"In low-resource domains like medical emergencies, where the vocabulary is rapidly shifting, different language modeling techniques have distinct advantages and limitations:
+
+1. **n-gram Smoothing Methods**: These methods estimate the probability of word sequences based on their frequency in training data. Techniques like Kneser-Ney or Laplace smoothing help mitigate issues with unseen n-grams. However, they struggle with capturing long-range dependencies and are limited by the amount of available training data, making them less effective in rapidly evolving domains.
+
+2. **Neural Language Models (NLMs)**: NLMs, such as RNNs or LSTMs, can capture more complex patterns and dependencies compared to n-grams. They are better suited for handling unseen words through embeddings but still require substantial amounts of data to perform well. In low-resource settings, NLMs may overfit due to limited training examples.
+
+3. **Transformer Pretraining**: Transformers, especially those pretrained on large corpora (like BERT, RoBERTa), excel at understanding context and handling unseen data through transfer learning. Pretrained models can be",1.0,0.0,4,1,0.0,14.5478,11.9528,18.4058,18.4058,69.9667,43.3066,100.0,43.3066,19988.625,18639.6538,60,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.9583
+"4. If a model uses retrieval-augmented generation and another uses only larger parametric memory, which is likely to age more gracefully over five years of changing knowledge, and why?",no_retrieval,"A model that uses retrieval-augmented generation is likely to age more gracefully over five years compared to one that relies solely on larger parametric memory. This is because retrieval-augmented models can access up-to-date information from external sources (like databases or the internet), allowing them to incorporate new knowledge as it becomes available. In contrast, a model relying solely on its internal parameters will not easily update its knowledge without retraining, which can be resource-intensive and may not capture all recent changes effectively.",1.0,0.0,5,1,0.0,8.3725,5.5386,18.2358,18.2358,66.6071,43.259,100.0,43.259,19954.625,18642.0503,28,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.75
+"5. Analyze whether contextual embeddings truly solved polysemy better than static embeddings, or whether they mainly shifted ambiguity into downstream fine-tuning.",no_retrieval,"Contextual embeddings have indeed improved handling of polysemy compared to static embeddings by capturing word meanings based on their context. Static embeddings assign a single vector representation to each word regardless of its context, which can lead to issues with polysemous words having multiple meanings. In contrast, contextual embeddings like those from BERT or GPT generate representations that depend on the specific context in which a word appears, thus better disambiguating meanings.
+
+However, while contextual embeddings reduce ambiguity at the embedding level, some complexity is shifted to the downstream fine-tuning phase. Models must still learn to interpret these nuanced representations effectively for specific tasks, which can introduce new challenges and require more data and computational resources for fine-tuning.
+
+In summary, contextual embeddings have made significant strides in addressing polysemy but have not entirely eliminated the need for careful downstream task adaptation.",1.0,0.0,4,1,0.0,11.8881,9.2763,18.4341,18.4341,68.4468,43.2877,100.0,43.2877,19972.625,18639.312,47,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.55
+"6. Compare logistic regression, feedforward neural networks, and transformers for sentiment classification when training data is small, noisy, and domain-shifted.",no_retrieval,"When dealing with small, noisy, and domain-shifted training data for sentiment classification:
+
+1. **Logistic Regression**: 
+   - **Pros**: Simple, interpretable, and less prone to overfitting due to its linear nature. It can perform well if the relationship between features and sentiment is relatively straightforward.
+   - **Cons**: Limited in capturing complex patterns and interactions in the data. May struggle with noisy and domain-shifted data.
+
+2. **Feedforward Neural Networks**:
+   - **Pros**: Can capture more complex relationships compared to logistic regression. With regularization techniques (e.g., dropout), they can handle noise better.
+   - **Cons**: Require more data to avoid overfitting. They might not generalize well on small datasets and could struggle with domain shifts without proper adaptation techniques.
+
+3. **Transformers**:
+   - **Pros**: Highly effective at capturing long-range dependencies and context, making them powerful for text tasks. Pre-trained models can leverage large amounts of external data, which helps in handling small and noisy datasets through transfer learning.
+   - **Cons**: Require significant",1.0,0.0,4,1,0.0,13.998,11.9629,18.3901,18.3901,69.3333,43.3062,100.0,43.3062,19986.625,18639.312,60,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.9
+"7. If word error rate improves in an ASR system but user satisfaction falls, what hidden factors in dialogue systems or speech interfaces could explain the contradiction?",no_retrieval,"A potential explanation for this contradiction could be that while the ASR system's accuracy has improved (as indicated by the lower word error rate), other aspects of the user experience may have deteriorated. Factors such as the naturalness of the dialogue, the relevance and helpfulness of the responses, or the overall interaction design might not have improved or could have even worsened. User satisfaction is influenced by the entire experience, not just the accuracy of speech recognition. Other possible issues could include increased latency, changes in the tone or voice quality of the system, or problems with the follow-up actions or context handling after recognizing the words correctly.",1.0,0.0,4,1,0.0,8.8638,6.7755,18.7441,18.7441,68.4412,43.2694,100.0,43.2694,19960.625,18639.9966,34,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.5769
+"8. Compare constituency parsing and dependency parsing for machine translation, information extraction, and question answering; where does each representation fail structurally?",no_retrieval,"Constituency parsing and dependency parsing are two different ways of representing sentence structure, each with its own strengths and weaknesses in applications like machine translation, information extraction, and question answering.
+
+### Constituency Parsing:
+- **Representation**: Represents sentences as a tree where each node is a phrase (e.g., noun phrase, verb phrase) and the leaves are words.
+- **Strengths**:
+  - Captures hierarchical structure well, useful for understanding complex grammatical relationships.
+  - Good for tasks requiring detailed syntactic analysis.
+- **Weaknesses**:
+  - Can be overly complex, leading to issues with sparsity and overfitting in machine learning models.
+  - Less efficient for tasks that require direct relationships between words (like dependency parsing).
+
+### Dependency Parsing:
+- **Representation**: Represents sentences as a directed graph where nodes are words and edges indicate dependencies (e.g., subject-of, object-of).
+- **Strengths**:
+  - Simplifies the structure by focusing on direct relationships between words, making it more efficient.
+  - Better suited for tasks that need to identify",1.0,0.0,4,1,0.0,13.8161,11.4197,19.2649,19.2649,72.3793,43.3055,100.0,43.3055,19992.625,18638.6274,58,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.7368
+"9. If a multilingual model performs well on English and Spanish but poorly on Thai and Tamil, determine whether tokenization, script frequency, morphology, or benchmark design is the most likely bottleneck.",no_retrieval,The most likely bottleneck in this scenario is the **morphology** of Thai and Tamil languages. Both Thai and Tamil have complex morphological structures that may not be adequately captured by a model trained primarily on English and Spanish. English and Spanish have relatively simpler morphological rules compared to the agglutinative nature of Thai and the complex conjugations in Tamil. This complexity can lead to poor performance if the model does not account for these linguistic features effectively.,1.0,0.0,4,1,0.0,7.858,4.9432,18.6115,18.6115,68.04,43.2552,100.0,43.2552,19952.625,18642.7349,25,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.5172
+"10. Analyze whether larger context windows reduce the need for external memory systems, or whether they mainly postpone retrieval problems at higher cost.",no_retrieval,"Larger context windows in models like transformers can indeed help reduce the need for external memory systems by allowing the model to capture more extensive dependencies and context within its internal mechanisms. This can lead to improved performance on tasks that require understanding longer sequences or documents.
+
+However, while larger context windows mitigate some issues related to limited context, they do not entirely eliminate the need for external memory systems. The increased window size comes with higher computational costs and may still face limitations when dealing with extremely long sequences or complex dependencies that extend beyond the window size.
+
+In essence, larger context windows mainly postpone retrieval problems rather than solving them completely, often at a higher computational cost. External memory systems remain valuable for managing very long-term dependencies or when the computational resources are constrained.",1.0,0.0,4,1,0.0,10.5561,7.9279,18.7944,18.7944,70.925,43.2774,100.0,43.2774,19968.625,18638.9692,40,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.8636
+"11. Compare instruction tuning, preference optimization, and supervised fine-tuning as alignment strategies; which best improves usefulness without degrading factual robustness?",no_retrieval,"Instruction tuning, preference optimization, and supervised fine-tuning are all methods used to align AI models with human preferences or goals, but they approach this task differently:
+
+1. **Instruction Tuning**: This involves training a model to follow instructions given by humans. It focuses on improving the model’s ability to understand and execute tasks based on explicit directions. While it can enhance the model's usefulness, there is a risk that the model might not always adhere strictly to factual accuracy if the instructions are ambiguous or if the model misinterprets them.
+
+2. **Preference Optimization**: This method uses human feedback to optimize the model's responses according to what humans prefer. It often involves iterative refinement where the model is shown pairs of its outputs and learns to choose the preferred one. Preference optimization can improve the model's alignment with human values but may also introduce biases or degrade factual robustness if the preferences are not grounded in factual correctness.
+
+3. **Supervised Fine-Tuning**: This involves further training an already pre-trained model on a specific dataset with labeled examples. The goal is to refine the model's performance on particular",1.0,0.0,4,1,0.0,14.152,11.5761,19.0046,19.0046,70.3276,43.3056,100.0,43.3056,19988.625,18639.6538,58,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.55
+"12. If an LLM becomes stronger at chain-of-thought reasoning but weaker at calibration, is it actually more useful in high-stakes settings such as medicine or law?",no_retrieval,"An LLM becoming stronger at chain-of-thought reasoning but weaker at calibration presents a mixed outcome for high-stakes settings like medicine or law. Enhanced chain-of-thought reasoning can improve its ability to solve complex problems and generate detailed, logical arguments. However, poor calibration means it may overestimate or underestimate the confidence in its answers, leading to unreliable conclusions. In high-stakes fields where accuracy and reliability are paramount, this unreliability could be detrimental. Therefore, while it might offer better reasoning processes, its overall usefulness would be limited by its inability to accurately gauge the correctness of its outputs.",1.0,0.0,4,1,0.0,9.0191,6.3475,19.0627,19.0627,71.1562,43.2684,91.0,43.2684,19960.625,18641.7075,32,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.6786
+"13. Compare dense retrieval and sparse retrieval for enterprise search when documents are technical, multilingual, and frequently updated.",no_retrieval,"Dense retrieval and sparse retrieval differ in how they represent and match documents to queries, which impacts their performance in enterprise search scenarios with technical, multilingual, and frequently updated documents.
+
+**Dense Retrieval:**
+- **Representation:** Uses dense vector embeddings to represent both documents and queries. These embeddings capture semantic meaning and context.
+- **Advantages:** Better at understanding semantic similarity, which is crucial for technical documents where synonyms and related terms are common. Multilingual support can be improved through multilingual models like mBERT or XLM-R.
+- **Disadvantages:** Requires more computational resources and time to generate embeddings. Updates may need retraining or reindexing of embeddings to reflect changes in documents.
+
+**Sparse Retrieval:**
+- **Representation:** Relies on term frequency-inverse document frequency (TF-IDF) or similar methods to create sparse vectors based on keyword presence.
+- **Advantages:** Faster and less resource-intensive for indexing and querying. Easier to update as new documents can be added without reindexing the entire corpus.
+- **Disadvantages:** Less effective at capturing",1.0,0.0,4,1,0.0,13.4489,11.5912,18.9799,18.9799,71.6552,43.3032,87.0,43.3032,19990.625,18637.6001,58,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.8125
+"14. If a translation model achieves higher BLEU but lower human preference scores, what does this reveal about metric mismatch and semantic adequacy?",no_retrieval,"This reveals a metric mismatch where automatic metrics like BLEU do not fully capture semantic adequacy or fluency preferred by humans. High BLEU scores may indicate good n-gram overlap with reference translations but can fail to reflect naturalness or meaningfulness in the context, leading to lower human preference scores.",1.0,0.0,4,1,0.0,6.1752,3.4245,17.8131,17.8131,65.3333,43.2292,100.0,43.2292,19942.625,18639.312,18,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.5217
+"15. Analyze whether scaling laws imply inevitable progress, or whether data quality, architecture changes, and energy constraints could break historical trends.",no_retrieval,"Scaling laws often suggest that as systems grow in size or complexity, certain performance metrics improve predictably. However, this does not necessarily imply inevitable progress. Factors such as data quality, architectural improvements, and energy constraints can disrupt these trends.
+
+Data quality is crucial; even with larger datasets, if the data is noisy or biased, performance gains may plateau or degrade. Architectural changes can also play a significant role; new algorithms or hardware designs might be required to continue scaling effectively. Lastly, energy constraints pose a practical limit; as models become more complex, they require more computational resources, which can become unsustainable.
+
+Therefore, while scaling laws provide useful insights, they do not guarantee continuous progress without addressing these critical factors.",1.0,0.0,4,1,0.0,10.2629,7.768,18.4088,18.4088,69.1026,43.2751,84.0,43.2751,19964.625,18638.9692,39,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.65
+"16. Compare RNNs, LSTMs, and transformers for streaming speech recognition where latency matters more than peak benchmark accuracy.",no_retrieval,"For streaming speech recognition where latency is critical:
+
+- **RNNs (Recurrent Neural Networks)**: Process inputs sequentially, which can introduce higher latency due to their dependency on previous time steps. They are less complex compared to LSTMs and Transformers, potentially offering lower latency but may struggle with long-term dependencies.
+
+- **LSTMs (Long Short-Term Memory networks)**: An improvement over RNNs by addressing the vanishing gradient problem through memory cells. However, they still process data sequentially, leading to relatively high latency despite their ability to handle longer sequences effectively.
+
+- **Transformers**: Use self-attention mechanisms to process input sequences in parallel, significantly reducing latency compared to RNNs and LSTMs. This parallel processing capability makes them highly efficient for real-time applications like streaming speech recognition, even though they might require more computational resources.
+
+In summary, while LSTMs offer better handling of sequence dependencies than RNNs, Transformers provide the best balance between low latency and performance for streaming speech recognition tasks.",1.0,0.0,4,1,0.0,13.7534,10.984,18.8455,18.8455,70.5455,43.2989,92.0,43.2989,19986.625,18638.6274,55,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.6667
+"17. If a named entity recognizer performs poorly on emerging public figures and startups, determine whether the root cause is annotation lag, tokenization bias, knowledge staleness, or evaluation design.",no_retrieval,"The root cause is likely **knowledge staleness**. Named Entity Recognizers (NER) rely on training data that reflects the current state of entities in the world. Emerging public figures and startups are new and not present in older training datasets, leading to poor performance due to the model's lack of exposure to these new entities.",1.0,0.0,4,1,0.0,6.0169,3.6957,17.8586,17.8586,64.9474,43.2358,100.0,43.2358,19944.625,18642.3921,19,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.4828
+18. Compare FrameNet-style semantic role labeling and end-to-end transformer extraction for event understanding in legal documents with long cross-references.,no_retrieval,"FrameNet-style semantic role labeling (SRL) and end-to-end transformer models each have distinct approaches to event understanding in legal documents, especially those with long cross-references.
+
+**FrameNet-style SRL:**
+- **Approach:** Relies on predefined frames and roles to annotate text. It identifies the semantic roles of entities within sentences based on these frames.
+- **Strengths:** Provides detailed, human-interpretable annotations that can be very useful for specific domains like law where precise definitions are crucial.
+- **Weaknesses:** Requires extensive manual annotation and frame definition, which can be labor-intensive and may not generalize well to unseen data or complex cross-referencing structures typical in legal documents.
+
+**End-to-end Transformer Extraction:**
+- **Approach:** Uses deep learning models, particularly transformers, to process and extract information directly from raw text without explicit frame definitions.
+- **Strengths:** Can handle long-range dependencies and context effectively due to self-attention mechanisms, making it suitable for documents with extensive cross-references. It also requires less manual intervention and can adapt to new patterns in",1.0,0.0,4,1,0.0,13.7633,11.7804,18.6751,18.6751,69.322,43.3056,96.0,43.3056,19990.625,18638.9692,59,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.9091
+"19. If two chatbots have equal benchmark scores but users trust one far more, analyze the roles of tone, uncertainty expression, memory consistency, and conversational repair.",no_retrieval,"When two chatbots have equal benchmark scores but users trust one far more, several factors could be at play:
+
+1. **Tone**: A friendly, empathetic, and natural tone can significantly enhance user trust. Users may perceive a chatbot with a more human-like tone as more reliable and trustworthy.
+
+2. **Uncertainty Expression**: How a chatbot handles uncertainty is crucial. A chatbot that admits when it doesn't know something and seeks clarification or additional information in a polite manner can build trust. Overconfidence in incorrect answers can erode trust.
+
+3. **Memory Consistency**: Chatbots that maintain consistent memory throughout conversations (remembering previous interactions and context) appear more reliable and competent to users. Inconsistent responses can lead to confusion and distrust.
+
+4. **Conversational Repair**: The ability to recover gracefully from misunderstandings or errors is vital. A chatbot that can smoothly correct its mistakes and guide the conversation back on track without causing frustration will likely be trusted more by users.
+
+These elements collectively contribute to the perceived reliability and trustworthiness of a chatbot, even if",1.0,0.0,5,1,0.0,14.0984,11.8842,18.512,18.512,69.9833,43.3106,100.0,43.3106,19992.625,18641.3657,60,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.8846
+"20. Compare whether future NLP progress is more likely to come from bigger models, better retrieval systems, multimodal grounding, or improved symbolic-neural hybrids.",no_retrieval,"Future NLP progress is likely to come from a combination of these areas, but each has its own potential:
+
+1. **Bigger Models**: Larger models have shown significant improvements in performance across various tasks due to their ability to capture more complex patterns and contexts. However, they also face challenges related to computational cost, overfitting, and interpretability.
+
+2. **Better Retrieval Systems**: Enhanced retrieval systems can improve efficiency and relevance by quickly accessing and utilizing large amounts of data. This approach is particularly useful for tasks requiring factual accuracy and up-to-date information.
+
+3. **Multimodal Grounding**: Integrating multiple forms of data (e.g., text, images, audio) can lead to more robust and versatile AI systems capable of understanding context and nuance better. This is crucial for applications like visual question answering and scene understanding.
+
+4. **Improved Symbolic-Neural Hybrids**: Combining neural networks with symbolic reasoning can address some of the limitations of purely neural approaches, such as lack of explainability and difficulty with logical reasoning. This hybrid approach aims to leverage the strengths of",1.0,0.0,4,1,0.0,14.3519,11.7711,18.6898,18.6898,69.4068,43.3083,100.0,43.3083,19988.625,18640.6812,59,0.0,,no_context,no_retrieval,True,0,0.0,0.0,0.8333
